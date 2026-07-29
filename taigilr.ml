@@ -33,6 +33,7 @@ type pos =
   | Exclamation
   | Conj
   | Pronoun
+  | Demonstrative
   | Noun
   | Text
   | End
@@ -94,7 +95,21 @@ let exclamations = [
 ]
 
 let pronouns = [
-  rule "我" Pronoun "first person singular"
+  rule "我" Pronoun "first person singular";
+  rule "家己" Pronoun "reflexive pronoun; myself";
+  rule "你" Pronoun "second person singular";
+  rule "伊" Pronoun "third person singular";
+  rule "咱" Pronoun "first person plural inclusive";
+  rule "阮" Pronoun "first person plural exclusive";
+  rule "恁" Pronoun "second person plural";
+  rule "𪜶" Pronoun "third person plural";
+]
+
+let demonstratives = [
+  rule "這" Demonstrative "proximal; this (near speaker)";
+  rule "遮" Demonstrative "proximal; here (near speaker)";
+  rule "彼" Demonstrative "distal; that (near listener/away)";
+  rule "遐" Demonstrative "distal; there (far away)";
 ]
 
 let nouns = [
@@ -127,6 +142,7 @@ let rules = List.concat [
   particles;
   exclamations;
   pronouns;
+  demonstratives;
   nouns;
   ambiguities;
 ]
@@ -209,6 +225,7 @@ let string_of_pos = function
   | Exclamation -> "Exclamation"
   | Conj -> "Conj"
   | Pronoun -> "Pronoun"
+  | Demonstrative -> "Demonstrative"
   | Noun -> "Noun"
   | Text -> "Text"
   | End -> "End"
