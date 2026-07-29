@@ -27,14 +27,16 @@ let help_info stream =
   | Stderr -> prerr_endline template
 
 type pos =
-  | Punc
-  | Ambiguity
+  | Punctuation
   | Particle
+  | Conjugation
+  | Preposition
   | Exclamation
-  | Conj
   | Pronoun
   | Demonstrative
+  | Adverb
   | Noun
+  | Ambiguity
   | Text
   | End
 
@@ -48,25 +50,33 @@ let rule pattern pos trans = Rule(Pattern(pattern), pos, Trans(trans))
 let token pattern pos trans = Token(Pattern(pattern), pos, Trans(trans))
 
 let punctuations = [
-  rule "。" Punc "sentence terminator";
-  rule "？" Punc "question terminator";
-  rule "！" Punc "exclamation terminator";
-  rule "，" Punc "comma / pause";
-  rule "；" Punc "semicolon / connector";
-  rule "：" Punc "colon / introducer";
-  rule "…" Punc "ellipsis / omission";
-  rule "—" Punc "dash / interruption";
-  rule "「" Punc "opening quotation mark";
-  rule "」" Punc "closing quotation mark";
-  rule "『" Punc "opening nested quotation mark";
-  rule "』" Punc "closing nested quotation mark";
-  rule "（" Punc "opening parenthesis";
-  rule "）" Punc "closing parenthesis";
+  rule "。" Punctuation "sentence terminator";
+  rule "？" Punctuation "question terminator";
+  rule "！" Punctuation "exclamation terminator";
+  rule "，" Punctuation "comma / pause";
+  rule "；" Punctuation "semicolon / connector";
+  rule "：" Punctuation "colon / introducer";
+  rule "…" Punctuation "ellipsis / omission";
+  rule "—" Punctuation "dash / interruption";
+  rule "「" Punctuation "opening quotation mark";
+  rule "」" Punctuation "closing quotation mark";
+  rule "『" Punctuation "opening nested quotation mark";
+  rule "』" Punctuation "closing nested quotation mark";
+  rule "（" Punctuation "opening parenthesis";
+  rule "）" Punctuation "closing parenthesis";
 ]
 
+let ambiguous_meaning = "Ambiguous meaning"
+
 let ambiguities = [
-  rule "會" Ambiguity "Ambiguous meaning";
-  rule "咧" Ambiguity "Ambiguous meaning";
+  rule "會" Ambiguity ambiguous_meaning;
+  rule "咧" Ambiguity ambiguous_meaning;
+  rule "共" Ambiguity ambiguous_meaning;
+  rule "甲" Ambiguity ambiguous_meaning;
+  rule "由" Ambiguity ambiguous_meaning;
+  rule "按" Ambiguity ambiguous_meaning;
+  rule "以" Ambiguity ambiguous_meaning;
+  rule "用" Ambiguity ambiguous_meaning;
 ]
 
 let particles = [
@@ -79,6 +89,23 @@ let particles = [
   rule "啦" Particle "sentence-final emphatic marker";
   rule "喔" Particle "sentence-final reminder marker";
   rule "吔" Particle "sentence-final softener";
+]
+
+let conjugations = [
+  rule "佮" Conjugation "and";
+  rule "含" Conjugation "and";
+  rule "和" Conjugation "and";
+  rule "以及" Conjugation "and alo";
+  rule "抑" Conjugation "or";
+  rule "以及" Conjugation "and alo";
+
+  rule "而且" Conjugation "moreover";
+  rule "何況" Conjugation "not to mention";
+  rule "因為" Conjugation "because";
+]
+
+let prepositions = [
+  rule "予" Preposition "let / by / to";
 ]
 
 let exclamations = [
@@ -112,6 +139,15 @@ let demonstratives = [
   rule "遐" Demonstrative "distal; there (far away)";
 ]
 
+let adverbs = [
+  rule "嘛" Adverb "also / too";
+  rule "亦" Adverb "also";
+  rule "也" Adverb "also";
+
+  rule "猶" Adverb "still / yet";
+  rule "閣" Adverb "again / more";
+]
+
 let nouns = [
   rule "阿公" Noun "grandfather; father's father";
   rule "阿媽" Noun "grandmother; father's mother";
@@ -140,9 +176,12 @@ let nouns = [
 let rules = List.concat [
   punctuations;
   particles;
+  conjugations;
+  prepositions;
   exclamations;
   pronouns;
   demonstratives;
+  adverbs;
   nouns;
   ambiguities;
 ]
@@ -219,14 +258,16 @@ let lex (rules : rule list) (str : string) : token list =
   loop tokens []
 
 let string_of_pos = function
-  | Punc -> "Punc"
-  | Ambiguity -> "Ambiguity"
+  | Punctuation -> "Punctuation"
   | Particle -> "Particle"
+  | Conjugation -> "Conjugation"
+  | Preposition -> "Preposition"
   | Exclamation -> "Exclamation"
-  | Conj -> "Conj"
   | Pronoun -> "Pronoun"
   | Demonstrative -> "Demonstrative"
+  | Adverb -> "Adverb"
   | Noun -> "Noun"
+  | Ambiguity -> "Ambiguity"
   | Text -> "Text"
   | End -> "End"
 
