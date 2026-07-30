@@ -6,4 +6,4 @@ if ! command -v clean-artifact >/dev/null 2>&1; then
 fi
 
 CWD=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) || exit 1
-$(cd "$CWD" && clean-artifact taigilr.ml)
+rm -f "$CWD/taigilr.exe" "$CWD/taigilr"

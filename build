@@ -6,4 +6,7 @@ if ! command -v ocaml-std >/dev/null 2>&1; then
 fi
 
 CWD=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) || exit 1
-$(cd "$CWD" && ocaml-std taigilr.ml)
+cp "$CWD/taigi_dict.ml" "$CWD/dict.ml" || exit 1
+trap 'rm -f "$CWD/dict.ml"' EXIT INT TERM
+
+$(cd "$CWD" && ocaml-std -o taigilr lexer.ml)

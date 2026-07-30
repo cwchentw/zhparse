@@ -14,9 +14,8 @@ The goal is to build a rule‑based lexer that reliably handles unambiguous word
 
 ## ⚙️ System Requirements
 
-- OCaml `4.14+` (recommended)  
-- [ocaml-clean-compile](https://github.com/opensourcedoc/ocaml-clean-compile) — compile OCaml code without Dune  
-- [clean-artifact](https://github.com/opensourcedoc/clean-artifact) — clean build artifacts  
+- OCaml `4.14+` (recommended)
+- [ocaml-clean-compile](https://github.com/opensourcedoc/ocaml-clean-compile) — compile OCaml code without Dune
 
 ## 📄 License
 
