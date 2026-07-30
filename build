@@ -40,12 +40,14 @@ fi
 CWD=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) || exit 1
 if [ "$dialect" = "$TAIGI" ]; then
     cp "$CWD/taigi_dict.ml" "$CWD/dict.ml" || exit 1
+    SOURCE=lexer.ml
     LEXER="taigilr"
 elif [ "$dialect" = "$HAKKA" ]; then
     cp "$CWD/hakka_dict.ml" "$CWD/dict.ml" || exit 1
+    SOURCE=hakka_lexer.ml
     LEXER="hakkalr"
 fi
 
 trap 'rm -f "$CWD/dict.ml"' EXIT INT TERM
 
-$(cd "$CWD" && ocaml-std -o "$LEXER" lexer.ml)
+$(cd "$CWD" && ocaml-std -o "$LEXER" "$SOURCE")
