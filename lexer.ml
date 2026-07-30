@@ -1,4 +1,3 @@
-let program = "taigilr"
 let version = "0.1.0"
 
 #include "dict.ml"
@@ -23,7 +22,7 @@ type stream =
   | Stderr
 
 let help_info stream =
-  let template = Printf.sprintf "Usage: %s [option] <sentence>" program in
+  let template = Printf.sprintf "Usage: %s [option] <sentence>" Sys.argv.(0) in
   match stream with
   | Stdout -> print_endline template
   | Stderr -> prerr_endline template

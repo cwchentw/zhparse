@@ -7,3 +7,4 @@ fi
 
 CWD=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) || exit 1
 rm -f "$CWD/taigilr.exe" "$CWD/taigilr"
+rm -f "$CWD/hakkalr.exe" "$CWD/hakkalr"

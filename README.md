@@ -9,8 +9,8 @@ While a purely rule‑based parser cannot achieve production‑grade accuracy du
 
 ## 📌 Project Status
 
-Development is currently focused on the **Taigi (Taiwanese Hokkien) lexer/tokenizer**.  
-The goal is to build a rule‑based lexer that reliably handles unambiguous words. Given the scale of this task, early work prioritizes **grammatical markers** and **high‑frequency vocabulary** in Taigi.
+Current development is centered on the **Taigi (Taiwanese Hokkien) and Hakka lexer/tokenizer** projects.  
+The primary objective is to design a rule‑based lexer that can consistently process unambiguous words. Given the scope of this undertaking, the initial phase emphasizes **grammatical markers** and **high‑frequency vocabulary** in both Taigi and Hakka.
 
 ## ⚙️ System Requirements
 
