@@ -1,17 +1,16 @@
-# taigi-parse
+# zhparse
 
-A rule-based Taigi parser.
+A rule‑based parser for Chinese dialects.
 
 ## ✨ Rationale
 
-There are currently very few NLP tools for Taigi, which limits the development of Taigi-based applications.  
-A purely rule-based parser cannot reach production-grade quality due to the many ambiguities that are difficult to resolve with rules alone.  
-However, such a parser can serve as a **bootstrap foundation for machine learning or deep learning parsers**.
+NLP tools for Chinese dialects remain scarce, which limits the development of downstream language applications.  
+While a purely rule‑based parser cannot achieve production‑grade accuracy due to inherent ambiguities that rules alone cannot resolve, it can serve as a **bootstrap foundation for machine learning and deep learning parsers**.
 
 ## 📌 Project Status
 
-Work is in progress on the **lexer / tokenizer**.  
-Ideally, a rule-based lexer should cover all unambiguous words. Since this is a large undertaking, the initial focus will be on **grammar words** and **common words** in Taigi.
+Development is currently focused on the **Taigi (Taiwanese Hokkien) lexer/tokenizer**.  
+The goal is to build a rule‑based lexer that reliably handles unambiguous words. Given the scale of this task, early work prioritizes **grammatical markers** and **high‑frequency vocabulary** in Taigi.
 
 ## ⚙️ System Requirements
 
