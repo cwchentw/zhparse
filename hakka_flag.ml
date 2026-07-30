@@ -1,0 +1,1 @@
+#define has_dialect

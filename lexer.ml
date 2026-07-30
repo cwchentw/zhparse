@@ -1,5 +1,6 @@
 let version = "0.1.0"
 
+#include "flag.ml"
 #include "dict.ml"
 
 type command =
@@ -62,10 +63,19 @@ let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
     if len <= 0 then None
     else
       let prefix_str = string_of_uchars (take len uchars) in
+      #ifdef has_dialect
+      let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _, _)) -> p = prefix_str) in
+      #else
       let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _)) -> p = prefix_str) in
+      #endif
       match matched with
+      #ifdef has_dialect
+      | Some (Rule(Pattern(p), pos_tag, dialect, trans_tag)) ->
+          Some (Token(Pattern(p), pos_tag, dialect, trans_tag), drop len uchars)
+      #else
       | Some (Rule(Pattern(p), pos_tag, trans_tag)) ->
           Some (Token(Pattern(p), pos_tag, trans_tag), drop len uchars)
+      #endif
       | None -> try_lengths (len - 1)
   in
   try_lengths total_len
@@ -81,7 +91,11 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
   in
   let text_uchars, remaining = loop uchars [] in
   let text_str = string_of_uchars text_uchars in
+  #ifdef has_dialect
+  (token text_str Text all_dialect "text content", remaining)
+  #else
   (token text_str Text "text content", remaining)
+  #endif
 
 let lex (rules : rule list) (str : string) : token list =
   let tokens = tokenize_utf8 str in
@@ -109,7 +123,11 @@ let _ =
     Printf.printf "# %s\n" sentence;
     lex rules sentence
     |> List.iter (fun x -> print_endline (print_token x));
+    #ifdef has_dialect
+    Printf.printf "(%s, %s, \"%s\", \"%s\")\n" "EOS" (string_of_pos End) "all dialect" "end of sentence"
+    #else
     Printf.printf "(%s, %s, \"%s\")\n" "EOS" (string_of_pos End) "end of sentence"
+    #endif
   | Error err ->
     prerr_endline err;
     help_info Stderr;
