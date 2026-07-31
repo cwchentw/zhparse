@@ -11,7 +11,7 @@ While a purely rule‑based parser cannot achieve production‑grade accuracy du
 
 The current stage of development is focused on the **Taigi (Taiwanese Hokkien) lexer/tokenizer** projects. The main objective is to design a **rule‑based lexer** that can consistently handle unambiguous words. In this initial phase, particular attention is placed on **grammatical markers** and **high‑frequency vocabulary**, ensuring that the foundation of the system is both stable and practical for real usage.
 
-Meanwhile, work on the **Hakka lexer/tokenizer** has been postponed due to the complexity of dialectal variation. Since manually adding words is a tedious process, future progress will rely on building an **interactive GUI or Web application** to streamline data entry. This approach will make dictionary expansion more efficient and allow smoother integration into the lexer framework.
+Work on the **Hakka lexer/tokenizer** continues, but dialectal distinctions are not implemented at this stage due to insufficient data. Lexical entries will be restructured once more comprehensive sources become available.
 
 ## ⚙️ System Requirements
 
