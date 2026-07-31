@@ -96,7 +96,14 @@ let demonstratives = []
 
 let adverbs = []
 
-let nouns = []
+let nouns = [
+  rule "桌仔" Noun (int_of_dialect Sixian) "desk";
+  rule "桌" Noun (int_of_dialect Hailu lor int_of_dialect Dapu lor int_of_dialect Raoping lor int_of_dialect SouthSixian) "desk";
+  rule "桌子" Noun (int_of_dialect Zhaoan) "desk";
+  rule "椅仔" Noun (int_of_dialect Sixian lor int_of_dialect Hailu lor int_of_dialect Raoping) "chair";
+  rule "椅" Noun (int_of_dialect Dapu lor int_of_dialect SouthSixian) "chair";
+  rule "椅子" Noun (int_of_dialect Zhaoan) "chair";
+]
 
 let rules = List.concat [
   punctuations;
