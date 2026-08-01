@@ -92,6 +92,18 @@ let demonstratives = []
 let adverbs = []
 
 let nouns = [
+  rule "姨丈公" Noun all_dialect "husband of maternal grandmother's sister";
+  rule "阿嬤" Noun all_dialect "grandmother (commonly paternal)";
+  rule "阿媽" Noun all_dialect "grandmother (commonly paternal)";
+  rule "姐婆" Noun all_dialect "maternal grandmother";
+  rule "丈㜷媽" Noun all_dialect "wife's grandmother";
+  rule "阿怙" Noun all_dialect "father (classical term)";
+  rule "伯㜷" Noun all_dialect "paternal uncle's wife";
+  rule "爺母" Noun all_dialect "parents";
+  rule "公姐子" Noun all_dialect "married couple";
+  rule "姪子" Noun all_dialect "brother's son";
+  rule "姪女" Noun all_dialect "brother's daughter";
+  rule "姪阿郎" Noun all_dialect "husband of niece";
   rule "桌仔" Noun (int_of_dialect Sixian) "desk";
   rule "桌" Noun (int_of_dialect Hailu lor int_of_dialect Dapu lor int_of_dialect Raoping lor int_of_dialect SouthSixian) "desk";
   rule "桌子" Noun (int_of_dialect Zhaoan) "desk";
