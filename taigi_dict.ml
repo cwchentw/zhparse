@@ -8,7 +8,6 @@ type pos =
   | Demonstrative
   | Adverb
   | Noun
-  | Ambiguity
   | Text
   | End
 
@@ -36,19 +35,6 @@ let punctuations = [
   rule "』" Punctuation "closing nested quotation mark";
   rule "（" Punctuation "opening parenthesis";
   rule "）" Punctuation "closing parenthesis";
-]
-
-let ambiguous_meaning = "Ambiguous meaning"
-
-let ambiguities = [
-  rule "會" Ambiguity ambiguous_meaning;
-  rule "咧" Ambiguity ambiguous_meaning;
-  rule "共" Ambiguity ambiguous_meaning;
-  rule "甲" Ambiguity ambiguous_meaning;
-  rule "由" Ambiguity ambiguous_meaning;
-  rule "按" Ambiguity ambiguous_meaning;
-  rule "以" Ambiguity ambiguous_meaning;
-  rule "用" Ambiguity ambiguous_meaning;
 ]
 
 let particles = [
@@ -155,7 +141,6 @@ let rules = List.concat [
   demonstratives;
   adverbs;
   nouns;
-  ambiguities;
 ]
 
 let string_of_pos = function
@@ -168,7 +153,6 @@ let string_of_pos = function
   | Demonstrative -> "Demonstrative"
   | Adverb -> "Adverb"
   | Noun -> "Noun"
-  | Ambiguity -> "Ambiguity"
   | Text -> "Text"
   | End -> "End"
 

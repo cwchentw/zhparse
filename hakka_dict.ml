@@ -48,7 +48,6 @@ type pos =
   | Demonstrative
   | Adverb
   | Noun
-  | Ambiguity
   | Text
   | End
 
@@ -77,10 +76,6 @@ let punctuations = [
   rule "（" Punctuation all_dialect "opening parenthesis";
   rule "）" Punctuation all_dialect "closing parenthesis";
 ]
-
-let ambiguous_meaning = "Ambiguous meaning"
-
-let ambiguities = []
 
 let particles = []
 
@@ -115,7 +110,6 @@ let rules = List.concat [
   demonstratives;
   adverbs;
   nouns;
-  ambiguities;
 ]
 
 let string_of_pos = function
@@ -128,7 +122,6 @@ let string_of_pos = function
   | Demonstrative -> "Demonstrative"
   | Adverb -> "Adverb"
   | Noun -> "Noun"
-  | Ambiguity -> "Ambiguity"
   | Text -> "Text"
   | End -> "End"
 
