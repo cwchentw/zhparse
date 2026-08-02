@@ -124,6 +124,18 @@ let nouns = [
   rule "阿嫂" Noun "elder brother's wife";
   rule "翁" Noun "husband";
   rule "某" Noun "wife";
+  rule "暗報" Noun "evening newspaper";
+  rule "目鏡" Noun "eyeglasses";
+  rule "目鏡仁" Noun "eyeglass lens";
+  rule "墨汁" Noun "ink";
+  rule "萬年筆" Noun "pen";
+  rule "蠓仔香" Noun "mosquito coils";
+  rule "蠓仔薰" Noun "mosquito coils";
+  rule "蠓仔水" Noun "pesticides";
+  rule "蠓捽仔" Noun "fly swatter";
+  rule "蠓罩" Noun "mosquito net";
+  rule "米甕" Noun "rice jar";
+  rule "米管" Noun "rice cup";
   rule "紅菜頭" Noun "beet";
   rule "紅菜" Noun "Okinawa spinach";
   rule "木瓜" Noun "papaya";
