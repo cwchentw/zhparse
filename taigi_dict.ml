@@ -136,6 +136,17 @@ let nouns = [
   rule "蠓罩" Noun "mosquito net";
   rule "米甕" Noun "rice jar";
   rule "米管" Noun "rice cup";
+  rule "抿仔" Noun "brush";
+  rule "眠床" Noun "bed";
+  rule "眠床枋" Noun "bed board";
+  rule "面巾" Noun "towel";
+  rule "面布" Noun "towel";
+  rule "面盆" Noun "washbowl";
+  rule "面桶" Noun "washbowl";
+  rule "名產" Noun "local specialty";
+  rule "母囝椅" Noun "feeding chair";
+  rule "鞋拔仔" Noun "shoehorn";
+  rule "鈃仔" Noun "bell";
   rule "紅菜頭" Noun "beet";
   rule "紅菜" Noun "Okinawa spinach";
   rule "木瓜" Noun "papaya";
