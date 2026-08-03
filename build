@@ -50,4 +50,4 @@ fi
 
 trap 'rm -f "$CWD/dict.ml" "$CWD/flag.ml"' EXIT INT TERM
 
-$(cd "$CWD" && ocaml-std -o "$LEXER" lexer.ml)
+$(cd "$CWD" && ocaml-std -o "$LEXER" cli.ml)
