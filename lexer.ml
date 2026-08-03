@@ -63,18 +63,22 @@ let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
     if len <= 0 then None
     else
       let prefix_str = string_of_uchars (take len uchars) in
-      #ifdef has_dialect
+      #ifdef hakka
       let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _, _)) -> p = prefix_str) in
       #else
-      let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _)) -> p = prefix_str) in
+      #ifdef taigi
+      let matched = rules |> List.find_opt (fun (Rule(Hanzi(z), _, _, _)) -> z = prefix_str) in
+      #endif
       #endif
       match matched with
-      #ifdef has_dialect
+      #ifdef hakka
       | Some (Rule(Pattern(p), pos_tag, dialect, trans_tag)) ->
           Some (Token(Pattern(p), pos_tag, dialect, trans_tag), drop len uchars)
       #else
-      | Some (Rule(Pattern(p), pos_tag, trans_tag)) ->
-          Some (Token(Pattern(p), pos_tag, trans_tag), drop len uchars)
+      #ifdef taigi
+      | Some (Rule(Hanzi(z), Tailo(t), pos_tag, trans_tag)) ->
+          Some (Token(Hanzi(z), Tailo(t), pos_tag, trans_tag), drop len uchars)
+      #endif
       #endif
       | None -> try_lengths (len - 1)
   in
@@ -91,10 +95,12 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
   in
   let text_uchars, remaining = loop uchars [] in
   let text_str = string_of_uchars text_uchars in
-  #ifdef has_dialect
+  #ifdef hakka
   (token text_str Text all_dialect "text content", remaining)
   #else
-  (token text_str Text "text content", remaining)
+  #ifdef taigi
+  (token text_str text_str Text "text content", remaining)
+  #endif
   #endif
 
 let lex (rules : rule list) (str : string) : token list =
@@ -123,10 +129,12 @@ let _ =
     Printf.printf "# %s\n" sentence;
     lex rules sentence
     |> List.iter (fun x -> print_endline (print_token x));
-    #ifdef has_dialect
+    #ifdef hakka
     Printf.printf "(%s, %s, \"%s\", \"%s\")\n" "EOS" (string_of_pos End) "all dialect" "end of sentence"
     #else
-    Printf.printf "(%s, %s, \"%s\")\n" "EOS" (string_of_pos End) "end of sentence"
+    #ifdef taigi
+    Printf.printf "(%s, %s, %s, \"%s\")\n" "EOS" "EOS" (string_of_pos End) "end of sentence"
+    #endif
     #endif
   | Error err ->
     prerr_endline err;

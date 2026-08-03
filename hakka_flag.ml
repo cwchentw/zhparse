@@ -1,1 +1,1 @@
-#define has_dialect
+#define hakka
