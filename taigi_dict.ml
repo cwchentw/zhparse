@@ -108,23 +108,23 @@ let adverbs = [
 ]
 
 let nouns = [
-  rule "阿公" "" Noun "grandfather; father's father";
-  rule "阿媽" "" Noun "grandmother; father's mother";
-  rule "阿爸" "" Noun "father";
-  rule "阿母" "" Noun "mother";
-  rule "阿伯" "" Noun "uncle; father's elder brother";
-  rule "阿叔" "" Noun "uncle; father's younger brother";
-  rule "阿姑" "" Noun "aunt; father's sister";
-  rule "阿姆" "" Noun "aunt; paternal elder uncle's wife";
-  rule "阿嬸" "" Noun "aunt; paternal younger uncle's wife";
-  rule "阿舅" "" Noun "uncle; mother's brother";
-  rule "阿姨" "" Noun "aunt; mother's sister";
-  rule "阿妗" "" Noun "aunt; maternal uncle's wife";
-  rule "阿姊" "" Noun "elder sister (relative to speaker)";
-  rule "阿兄" "" Noun "elder brother (relative to speaker)";
-  rule "阿嫂" "" Noun "elder brother's wife";
-  rule "翁" "" Noun "husband";
-  rule "某" "" Noun "wife";
+  rule "阿公" "a-kong" Noun "grandfather; father's father";
+  rule "阿媽" "a-má" Noun "grandmother; father's mother";
+  rule "阿爸" "a-pah" Noun "father";
+  rule "阿母" "a-bú" Noun "mother";
+  rule "阿伯" "a-peh" Noun "uncle; father's elder brother";
+  rule "阿叔" "a-tsik" Noun "uncle; father's younger brother";
+  rule "阿姑" "a-koo" Noun "aunt; father's sister";
+  rule "阿姆" "a-ḿ" Noun "aunt; paternal elder uncle's wife";
+  rule "阿嬸" "a-tsím" Noun "aunt; paternal younger uncle's wife";
+  rule "阿舅" "a-kū" Noun "uncle; mother's brother";
+  rule "阿姨" "a-î" Noun "aunt; mother's sister";
+  rule "阿妗" "a-kīm" Noun "aunt; maternal uncle's wife";
+  rule "阿姊" "a-tsí" Noun "elder sister (relative to speaker)";
+  rule "阿兄" "a-hiann" Noun "elder brother (relative to speaker)";
+  rule "阿嫂" "a-só" Noun "elder brother's wife";
+  rule "翁" "ang" Noun "husband";
+  rule "某" "bóo" Noun "wife";
   rule "暗報" "" Noun "evening newspaper";
   rule "目鏡" "" Noun "eyeglasses";
   rule "目鏡仁" "" Noun "eyeglass lens";
