@@ -138,21 +138,22 @@ let nouns = [
   rule "米甕" "bí-àng" Noun "rice jar";
   rule "米管" "bí-kńg" Noun "rice cup";
   rule "抿仔" "bín-á" Noun "brush";
-  rule "眠床" "" Noun "bed";
-  rule "眠床枋" "" Noun "bed board";
-  rule "面巾" "" Noun "towel";
-  rule "面布" "" Noun "towel";
-  rule "面盆" "" Noun "washbowl";
-  rule "面桶" "" Noun "washbowl";
-  rule "名產" "" Noun "local specialty";
-  rule "母囝椅" "" Noun "feeding chair";
-  rule "鞋拔仔" "" Noun "shoehorn";
-  rule "鈃仔" "" Noun "bell";
-  rule "紅菜頭" "" Noun "beet";
-  rule "紅菜" "" Noun "Okinawa spinach";
-  rule "木瓜" "" Noun "papaya";
-  rule "番麥" "" Noun "corn";
-  rule "米芳" "" Noun "puffed rice cake";
+  rule "眠床" "bîn-tshn̂g" Noun "bed";
+  rule "眠床枋" "bîn-tshn̂g-pang" Noun "bed board";
+  rule "面巾" "bīn-kin" Noun "towel";
+  rule "面布" "bīn-pòo" Noun "towel";
+  rule "面盆" "bīn-phûn" Noun "washbowl";
+  rule "面桶" "bīn-tháng" Noun "washbowl";
+  rule "名產" "bîng-sán" Noun "local specialty";
+  rule "母囝椅" "bú-kiánn-í" Noun "feeding chair";
+  rule "鞋拔仔" "ê-pue̍h-á" Noun "shoehorn";
+  rule "鈃仔" "giang-á" Noun "bell";
+  rule "紅菜頭" "âng-tshài-thâu" Noun "beet";
+  rule "紅菜" "âng-tshài" Noun "Okinawa spinach";
+  rule "木瓜" "bo̍k-kue" Noun "papaya";
+  rule "番麥" "huan-be̍h" Noun "corn";
+  rule "米芳" "bí-phang" Noun "puffed rice cake";
+  rule "磅米芳" "pōng-bí-phang" Noun "puffed rice cake";
 ]
 
 let rules = List.concat [
