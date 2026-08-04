@@ -67,11 +67,15 @@ let conjugations = [
   rule "而且" "" Conjugation "moreover";
   rule "何況" "" Conjugation "not to mention";
   rule "因為" "" Conjugation "because";
+
+  rule "毋過" "m̄-koh" Conjugation "but / however";
+  rule "毋但" "m̄-nā" Conjugation "not only";
+  rule "毋管" "m̄-kuán" Conjugation "no matter / regardless";
+  rule "毋才" "m̄-tsiah" Conjugation "only then / that is why";
 ]
 
 let prepositions = [
   rule "予" "" Preposition "let / by / to";
-  rule "毋過" "m̄-koh" Preposition "but / however";
 ]
 
 let exclamations = [
@@ -125,6 +129,8 @@ let suffixes = [
 let phrases = [
   rule "毋甘願" "m̄ kam-guān" Phrase "reluctant";
   rule "毋甘嫌" "m̄-kam hiâm" Phrase "you flatter me";
+  rule "毋是勢" "m̄-sī-sè" Phrase "something is wrong";
+  rule "毋知死" "m̄-tsai-sí" Phrase "clueless about the danger";
 ]
 
 let adverbs = [
@@ -139,10 +145,11 @@ let adverbs = [
   rule "毋" "m̄" Adverb "not";
   rule "猶毋過" "iáu-m̄-koh" Adverb "however / yet / but";
   rule "毋捌" "m̄ bat" Adverb "never / have not before";
-  rule "毋免" "m̄-bián" Adverb "need not / don't need to / no need";
-  rule "毋好" "m̄ hó" Adverb "don't";
+  rule "毋免" "m̄-bián" Adverb "need not / do not need to / no need";
+  rule "毋好" "m̄ hó" Adverb "do not";
   rule "毋好勢" "m̄ hó-sè" Adverb "inconvenient / inopportune";
   rule "毋敢" "m̄ kánn" Adverb "dare not / not dare";
+  rule "毋通" "m̄-thang" Adverb "do not / should not";
 ]
 
 let approximation_adverbs = [
@@ -158,6 +165,9 @@ let approximation_adverbs = [
 let adjectives = [
   rule "規千萬" "kui-tshing-bān" Adjective "numerous";
   rule "毋甘" "m̄-kam" Adjective "reluctant";
+  rule "毋是款" "m̄-sī-khuán" Adjective "not the proper way";
+  rule "毋著" "m̄-tio̍h" Adjective "wrong / incorrect / mistaken";
+  rule "毋知人" "m̄-tsai-lâng" Adjective "unconscious / comatose / blacked out";
 ]
 
 let verbs = [
@@ -168,8 +178,13 @@ let verbs = [
   rule "除以" "tû-í" Verb "divided by";
   rule "等於" "tíng-î" Verb "equals";
   rule "賰" "tshun" Verb "leaves";
-  rule "毋願" "m̄-guān" Verb "don't want to";
+  rule "毋願" "m̄-guān" Verb "do not want to";
+  rule "毋挃" "m̄ ti̍h" Verb "do not want";
   rule "毋驚" "m̄ kiann" Verb "not afraid";
+  rule "毋是" "m̄ sī" Verb "is not";
+  rule "毋值" "m̄-ta̍t" Verb "not worth it";
+  rule "毋知" "m̄ tsai" Verb "do not know";
+  rule "毋知影" "m̄ tsai-iánn" Verb "do not know";
 ]
 
 let numerals = [
