@@ -8,6 +8,7 @@ type pos =
   | Demonstrative
   | Prefix
   | Suffix
+  | Phrase
   | Adverb
   | ApproximationAdverb
   | Adjective
@@ -71,6 +72,7 @@ let conjugations = [
 
 let prepositions = [
   rule "予" "" Preposition "let / by / to";
+  rule "毋過" "m̄-koh" Preposition "but / however";
 ]
 
 let exclamations = [
@@ -121,6 +123,11 @@ let suffixes = [
   rule "倍" "puē" Suffix "multiplicative";
 ]
 
+let phrases = [
+  rule "毋甘願" "m̄ kam-guān" Phrase "reluctant";
+  rule "毋甘嫌" "m̄-kam hiâm" Phrase "you flatter me";
+]
+
 let adverbs = [
   rule "攏" "lóng" Adverb "all";
   rule "嘛" "mā" Adverb "also / too";
@@ -129,6 +136,14 @@ let adverbs = [
 
   rule "猶" "" Adverb "still / yet";
   rule "閣" "" Adverb "again / more";
+
+  rule "毋" "m̄" Adverb "not";
+  rule "猶毋過" "iáu-m̄-koh" Adverb "however / yet / but";
+  rule "毋捌" "m̄ bat" Adverb "never / have not before";
+  rule "毋免" "m̄-bián" Adverb "need not / don't need to / no need";
+  rule "毋好" "m̄ hó" Adverb "don't";
+  rule "毋好勢" "m̄ hó-sè" Adverb "inconvenient / inopportune";
+  rule "毋敢" "m̄ kánn" Adverb "dare not / not dare";
 ]
 
 let approximation_adverbs = [
@@ -143,6 +158,7 @@ let approximation_adverbs = [
 
 let adjectives = [
   rule "規千萬" "kui-tshing-bān" Adjective "numerous";
+  rule "毋甘" "m̄-kam" Adjective "reluctant";
 ]
 
 let verbs = [
@@ -153,6 +169,8 @@ let verbs = [
   rule "除以" "tû-í" Verb "divided by";
   rule "等於" "tíng-î" Verb "equals";
   rule "賰" "tshun" Verb "leaves";
+  rule "毋願" "m̄-guān" Verb "don't want to";
+  rule "毋驚" "m̄ kiann" Verb "not afraid";
 ]
 
 let numerals = [
@@ -275,6 +293,7 @@ let rules = List.concat [
   demonstratives;
   prefixes;
   suffixes;
+  phrases;
   adverbs;
   approximation_adverbs;
   adjectives;
@@ -293,6 +312,7 @@ let string_of_pos = function
   | Demonstrative -> "Demonstrative"
   | Prefix -> "Prefix"
   | Suffix -> "Suffix"
+  | Phrase -> "Phrase"
   | Adverb -> "Adverb"
   | ApproximationAdverb -> "Approximation Adverb"
   | Adjective -> "Adjective"
