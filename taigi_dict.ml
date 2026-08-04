@@ -87,14 +87,23 @@ let exclamations = [
 ]
 
 let pronouns = [
-  rule "我" "" Pronoun "first person singular";
-  rule "家己" "" Pronoun "reflexive pronoun; myself";
-  rule "你" "" Pronoun "second person singular";
-  rule "伊" "" Pronoun "third person singular";
-  rule "咱" "" Pronoun "first person plural inclusive";
-  rule "阮" "" Pronoun "first person plural exclusive";
-  rule "恁" "" Pronoun "second person plural";
-  rule "𪜶" "" Pronoun "third person plural";
+  rule "我" "guá" Pronoun "first person singular";
+  rule "你" "lí" Pronoun "second person singular";
+  rule "伊" "i" Pronoun "third person singular";
+  rule "阮" "guán" Pronoun "first person plural exclusive";
+  rule "咱" "lán" Pronoun "first person plural inclusive";
+  rule "恁" "lín" Pronoun "second person plural";
+  rule "𪜶" "in" Pronoun "third person plural";
+  rule "怹" "in" Pronoun "third person plural";
+  rule "家己" "ka-kī" Pronoun "reflexive pronoun";
+  rule "我的" "guá ê" Pronoun "my / mine";
+  rule "你的" "lí ê" Pronoun "your / yours";
+  rule "伊的" "i ê" Pronoun "his / her / its";
+  rule "咱的" "lán ê" Pronoun "our (inclusive)";
+  rule "阮的" "gún ê" Pronoun "our (exclusive)";
+  rule "恁的" "lín ê" Pronoun "your (plural)";
+  rule "𪜶的" "in ê" Pronoun "their / theirs";
+  rule "怹的" "in ê" Pronoun "their / theirs";
 ]
 
 let demonstratives = [
