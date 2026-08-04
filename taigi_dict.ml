@@ -9,6 +9,7 @@ type pos =
   | Prefix
   | Suffix
   | Adverb
+  | ApproximationAdverb
   | Adjective
   | Numeral
   | Verb
@@ -120,11 +121,29 @@ let adverbs = [
   rule "閣" "" Adverb "again / more";
 ]
 
+let approximation_adverbs = [
+  rule "差不多" "tsha-put-to" Adverb "nearly / almost";
+  rule "左右" "tsó-iū" Adverb "about / around";
+  rule "成" "tsiânn" Adverb "almost";
+  rule "外" "guā" Adverb "more than";
+  rule "以下" "í-hā" Adverb "less than";
+  rule "無到" "bô kàu" Adverb "less than";
+  rule "幾" "kuí" Adverb "several / few";
+]
+
 let adjectives = [
   rule "規千萬" "kui-tshing-bān" Adjective "numerous";
 ]
 
-let verbs = []
+let verbs = [
+  rule "加" "ka" Verb "add";
+  rule "減" "kiám" Verb "subtract";
+  rule "乘以" "sêng-í" Verb "multiply";
+  rule "除" "tû" Verb "divided into";
+  rule "除以" "tû-í" Verb "divided by";
+  rule "等於" "tíng-î" Verb "equals";
+  rule "賰" "tshun" Verb "leaves";
+]
 
 let numerals = [
   rule "零" "lân" Numeral "zero";
@@ -204,6 +223,7 @@ let nouns = [
   rule "翁" "ang" Noun "husband";
   rule "某" "bóo" Noun "wife";
   rule "拍折" "phah-tsiat" Noun "discount";
+  rule "答案" "tap-àn" Noun "answer";
   rule "暗報" "àm-pò" Noun "evening newspaper";
   rule "目鏡" "ba̍k-kiànn" Noun "eyeglasses";
   rule "目鏡仁" "ba̍k-kiànn-jîn" Noun "eyeglass lens";
@@ -246,6 +266,7 @@ let rules = List.concat [
   prefixes;
   suffixes;
   adverbs;
+  approximation_adverbs;
   adjectives;
   verbs;
   numerals;
@@ -263,6 +284,7 @@ let string_of_pos = function
   | Prefix -> "Prefix"
   | Suffix -> "Suffix"
   | Adverb -> "Adverb"
+  | ApproximationAdverb -> "Approximation Adverb"
   | Adjective -> "Adjective"
   | Verb -> "Verb"
   | Numeral -> "Numeral"
