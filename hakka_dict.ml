@@ -159,4 +159,4 @@ let print_dialect d =
     buf |> Buffer.contents |> String.trim
 
 let print_token (Token (Pattern p, pos, dialect, Trans t)) =
-  Printf.sprintf "(%s, %s, \"%s\", \"%s\")" p (string_of_pos pos) (print_dialect dialect) t
+  Printf.sprintf "(%s, %s, %s, %s)" p (string_of_pos pos) (print_dialect dialect) t

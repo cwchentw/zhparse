@@ -41,10 +41,10 @@ let _ =
     lex rules sentence
     |> List.iter (fun x -> print_endline (print_token x));
     #ifdef hakka
-    Printf.printf "(%s, %s, \"%s\", \"%s\")\n" "EOS" (string_of_pos End) "all dialect" "end of sentence"
+    Printf.printf "(%s, %s, %s, %s)\n" "EOS" (string_of_pos End) "all dialect" "end of sentence"
     #else
     #ifdef taigi
-    Printf.printf "(%s, %s, %s, \"%s\")\n" "EOS" "EOS" (string_of_pos End) "end of sentence"
+    Printf.printf "(%s, %s, %s, %s)\n" "EOS" "EOS" (string_of_pos End) "end of sentence"
     #endif
     #endif
   | Error err ->
