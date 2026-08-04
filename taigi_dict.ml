@@ -107,10 +107,10 @@ let pronouns = [
 ]
 
 let demonstratives = [
-  rule "這" "" Demonstrative "proximal; this (near speaker)";
-  rule "遮" "" Demonstrative "proximal; here (near speaker)";
-  rule "彼" "" Demonstrative "distal; that (near listener/away)";
-  rule "遐" "" Demonstrative "distal; there (far away)";
+  rule "這" "tse" Demonstrative "proximal singular; this (near speaker)";
+  rule "彼" "he" Demonstrative "distal singular; that (near listener/away)";
+  rule "遮" "tsia" Demonstrative "proximal plural or place; these/this place";
+  rule "遐" "hia" Demonstrative "distal plural or place; those/that place";
 ]
 
 let prefixes = [
@@ -122,7 +122,8 @@ let suffixes = [
 ]
 
 let adverbs = [
-  rule "嘛" "" Adverb "also / too";
+  rule "攏" "lóng" Adverb "all";
+  rule "嘛" "mā" Adverb "also / too";
   rule "亦" "" Adverb "also";
   rule "也" "" Adverb "also";
 
