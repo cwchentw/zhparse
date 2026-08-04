@@ -47,7 +47,6 @@ let punctuations = [
 
 let particles = [
   rule "矣" "" Particle "perfective aspect marker";
-  rule "毋" "" Particle "negation marker";
   rule "袂" "" Particle "inability marker";
   rule "敢" "" Particle "dubitative marker";
   rule "嘛" "" Particle "additive marker";
