@@ -5,6 +5,16 @@ They ensure consistency across the corpus and reduce sparsity in training data.
 
 ## Token List
 
+### `<CNUM>`
+
+- **Definition:** Represents any sequence of Han characters denoting numbers (e.g., 一、二、三十、兩百零五).
+- **Usage:** Replace all Han-character numeric expressions with `<CNUM>`.
+- **Example:**
+  - Input: `三十歲`
+  - Output: `<CNUM>歲`
+  - Input: `兩百零五人`
+  - Output: `<CNUM>人`
+
 ### `<NUM>`
 
 - **Definition:** Represents any numeric sequence (e.g., integers, phone numbers, dates).
