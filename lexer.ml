@@ -22,10 +22,52 @@ let tokenize_utf8 (s : string) : Uchar.t list =
   in
   loop 0 []
 
+let string_of_uchar (uchar : Uchar.t) : string =
+  let buf = Buffer.create 4 in
+  Buffer.add_utf_8_uchar buf uchar;
+  Buffer.contents buf
+
 let string_of_uchars (uchars : Uchar.t list) : string =
   let buf = Buffer.create (List.length uchars * 4) in
   List.iter (Buffer.add_utf_8_uchar buf) uchars;
   Buffer.contents buf
+
+let is_english (uchar : Uchar.t) =
+  let code = Uchar.to_int uchar in
+  (code >= 65 && code <= 90) || (code >= 97 && code <= 122)
+
+let is_uppcase (uchar : Uchar.t) =
+  let code = Uchar.to_int uchar in
+  code >= 65 && code <= 90
+
+let match_foreign_proper_noun (uchars : Uchar.t list) =
+  let rec match_english (ucs : Uchar.t list) (acc : Uchar.t list) =
+    match ucs with
+    | [] -> [], List.rev acc
+    | x :: xs when is_english x -> match_english xs (x :: acc)
+    | _ -> ucs, List.rev acc
+  in
+  let (remaining, matched_uchars) = match_english uchars [] in
+  match matched_uchars with
+  | [] -> None
+  | _ ->
+      let z = string_of_uchars matched_uchars in
+      if List.exists is_uppcase matched_uchars then
+        #ifdef hakka
+        Some (Token(Pattern(z), Noun, all_dialect, Trans(z)), remaining)
+        #else
+        #ifdef taigi
+        Some (Token(Hanzi(z), Tailo(z), Noun, Trans(z)), remaining)
+        #endif
+        #endif
+      else
+        #ifdef hakka
+        Some (Token(Pattern(z), Foreign, all_dialect, Trans(z)), remaining)
+        #else
+        #ifdef taigi
+        Some (Token(Hanzi(z), Tailo(z), Foreign, Trans(z)), remaining)
+        #endif
+        #endif
 
 let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
   let total_len = List.length uchars in
@@ -59,11 +101,18 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
     match rest with
     | [] -> List.rev acc, []
     | u :: tl ->
-        match match_rule_prefix rules rest with
-        | Some _ -> List.rev acc, rest
-        | None -> loop tl (u :: acc)
+        if is_english u then
+          List.rev acc, rest
+        else
+          match match_rule_prefix rules rest with
+          | Some _ -> List.rev acc, rest
+          | None -> loop tl (u :: acc)
   in
-  let text_uchars, remaining = loop uchars [] in
+  let text_uchars, remaining =
+    match loop uchars [] with
+    | [], u :: tl -> [u], tl
+    | res -> res
+  in
   let text_str = string_of_uchars text_uchars in
   #ifdef hakka
   (token text_str Text all_dialect "text content", remaining)
@@ -78,8 +127,14 @@ let lex (rules : rule list) (str : string) : token list =
   let rec loop uchars acc =
     match uchars with
     | [] -> List.rev acc
-    | _ ->
-        match match_rule_prefix rules uchars with
+    | x :: _ ->
+        let matched_res =
+          if is_english x then
+            match_foreign_proper_noun uchars
+          else
+            match_rule_prefix rules uchars
+        in
+        match matched_res with
         | Some (tok, remaining) ->
             loop remaining (tok :: acc)
         | None ->

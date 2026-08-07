@@ -15,6 +15,7 @@ type pos =
   | Numeral
   | Verb
   | Noun
+  | Foreign
   | Text
   | End
 
@@ -333,6 +334,7 @@ let string_of_pos = function
   | Verb -> "Verb"
   | Numeral -> "Numeral"
   | Noun -> "Noun"
+  | Foreign -> "Foreign"
   | Text -> "Text"
   | End -> "End"
 

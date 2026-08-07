@@ -48,6 +48,7 @@ type pos =
   | Demonstrative
   | Adverb
   | Noun
+  | Foreign
   | Text
   | End
 
@@ -134,6 +135,7 @@ let string_of_pos = function
   | Demonstrative -> "Demonstrative"
   | Adverb -> "Adverb"
   | Noun -> "Noun"
+  | Foreign -> "Foreign"
   | Text -> "Text"
   | End -> "End"
 
