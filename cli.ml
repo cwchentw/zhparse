@@ -40,12 +40,10 @@ let _ =
     Printf.printf "# %s\n" sentence;
     lex rules sentence
     |> List.iter (fun x -> print_endline (print_token x));
-    #ifdef hakka
-    Printf.printf "(%s, %s, %s, %s)\n" "EOS" (string_of_pos End) "all dialect" "end of sentence"
-    #else
-    #ifdef taigi
+    #if defined taigi
     Printf.printf "(%s, %s, %s, %s)\n" "EOS" "EOS" (string_of_pos End) "end of sentence"
-    #endif
+    #elif defined hakka
+    Printf.printf "(%s, %s, %s, %s)\n" "EOS" (string_of_pos End) "all dialect" "end of sentence"
     #endif
   | Error err ->
     prerr_endline err;

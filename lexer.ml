@@ -53,20 +53,16 @@ let match_foreign_proper_noun (uchars : Uchar.t list) =
   | _ ->
       let z = string_of_uchars matched_uchars in
       if List.exists is_uppcase matched_uchars then
-        #ifdef hakka
-        Some (Token(Pattern(z), Noun, all_dialect, Trans(z)), remaining)
-        #else
-        #ifdef taigi
+        #if defined taigi
         Some (Token(Hanzi(z), Tailo(z), Noun, Trans(z)), remaining)
-        #endif
+        #elif defined hakka
+        Some (Token(Pattern(z), Noun, all_dialect, Trans(z)), remaining)
         #endif
       else
-        #ifdef hakka
-        Some (Token(Pattern(z), Foreign, all_dialect, Trans(z)), remaining)
-        #else
-        #ifdef taigi
+        #if defined taigi
         Some (Token(Hanzi(z), Tailo(z), Foreign, Trans(z)), remaining)
-        #endif
+        #elif defined hakka
+        Some (Token(Pattern(z), Foreign, all_dialect, Trans(z)), remaining)
         #endif
 
 let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
@@ -75,22 +71,18 @@ let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
     if len <= 0 then None
     else
       let prefix_str = string_of_uchars (take len uchars) in
-      #ifdef hakka
-      let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _, _)) -> p = prefix_str) in
-      #else
-      #ifdef taigi
+      #if defined taigi
       let matched = rules |> List.find_opt (fun (Rule(Hanzi(z), _, _, _)) -> z = prefix_str) in
-      #endif
+      #elif defined hakka
+      let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _, _)) -> p = prefix_str) in
       #endif
       match matched with
-      #ifdef hakka
-      | Some (Rule(Pattern(p), pos_tag, dialect, trans_tag)) ->
-          Some (Token(Pattern(p), pos_tag, dialect, trans_tag), drop len uchars)
-      #else
-      #ifdef taigi
+      #if defined taigi
       | Some (Rule(Hanzi(z), Tailo(t), pos_tag, trans_tag)) ->
-          Some (Token(Hanzi(z), Tailo(t), pos_tag, trans_tag), drop len uchars)
-      #endif
+        Some (Token(Hanzi(z), Tailo(t), pos_tag, trans_tag), drop len uchars)
+      #elif defined hakka
+      | Some (Rule(Pattern(p), pos_tag, dialect, trans_tag)) ->
+        Some (Token(Pattern(p), pos_tag, dialect, trans_tag), drop len uchars)
       #endif
       | None -> try_lengths (len - 1)
   in
@@ -114,12 +106,10 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
     | res -> res
   in
   let text_str = string_of_uchars text_uchars in
-  #ifdef hakka
-  (token text_str Text all_dialect "text content", remaining)
-  #else
-  #ifdef taigi
+  #if defined taigi
   (token text_str text_str Text "text content", remaining)
-  #endif
+  #elif defined hakka
+  (token text_str Text all_dialect "text content", remaining)
   #endif
 
 let lex (rules : rule list) (str : string) : token list =
