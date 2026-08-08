@@ -36,6 +36,8 @@ setup.log
 _opam/
 
 # Artifact
+mandarinlr
+mandarinlr.exe
 taigilr
 taigilr.exe
 hakkalr

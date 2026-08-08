@@ -13,6 +13,8 @@ The current stage of development is focused on the **Taigi (Taiwanese Hokkien) l
 
 Work on the **Hakka lexer/tokenizer** continues, but regional distinctions are not implemented at this stage due to insufficient data. Lexical entries will be restructured once more comprehensive sources become available.
 
+**Mandarin lexer/tokenizer** has been added as a scaffold for a Sinitic language NLP codebase. Further development is not planned in the near future.
+
 ## ⚙️ System Requirements
 
 - OCaml `4.14+` (recommended)

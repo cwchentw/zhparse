@@ -6,5 +6,6 @@ if ! command -v clean-artifact >/dev/null 2>&1; then
 fi
 
 CWD=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) || exit 1
+rm -f "$CWD/mandarin.exe" "$CWD/mandarinlr"
 rm -f "$CWD/taigilr.exe" "$CWD/taigilr"
 rm -f "$CWD/hakkalr.exe" "$CWD/hakkalr"

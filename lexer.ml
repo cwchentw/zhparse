@@ -53,13 +53,17 @@ let match_foreign_proper_noun (uchars : Uchar.t list) =
   | _ ->
       let z = string_of_uchars matched_uchars in
       if List.exists is_uppcase matched_uchars then
-        #if defined taigi
+        #if defined mandarin
+        Some (Token(Hanzi(z), Pinyin(z), Noun, Trans(z)), remaining)
+        #elif defined taigi
         Some (Token(Hanzi(z), Tailo(z), Noun, Trans(z)), remaining)
         #elif defined hakka
         Some (Token(Pattern(z), Noun, all_dialect, Trans(z)), remaining)
         #endif
       else
-        #if defined taigi
+        #if defined mandarin
+        Some (Token(Hanzi(z), Pinyin(z), Foreign, Trans(z)), remaining)
+        #elif defined taigi
         Some (Token(Hanzi(z), Tailo(z), Foreign, Trans(z)), remaining)
         #elif defined hakka
         Some (Token(Pattern(z), Foreign, all_dialect, Trans(z)), remaining)
@@ -71,13 +75,18 @@ let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
     if len <= 0 then None
     else
       let prefix_str = string_of_uchars (take len uchars) in
-      #if defined taigi
+      #if defined mandarin
+      let matched = rules |> List.find_opt (fun (Rule(Hanzi(z), _, _, _)) -> z = prefix_str) in
+      #elif defined taigi
       let matched = rules |> List.find_opt (fun (Rule(Hanzi(z), _, _, _)) -> z = prefix_str) in
       #elif defined hakka
       let matched = rules |> List.find_opt (fun (Rule(Pattern(p), _, _, _)) -> p = prefix_str) in
       #endif
       match matched with
-      #if defined taigi
+      #if defined mandarin
+      | Some (Rule(Hanzi(z), Pinyin(py), pos_tag, trans_tag)) ->
+        Some (Token(Hanzi(z), Pinyin(py), pos_tag, trans_tag), drop len uchars)
+      #elif defined taigi
       | Some (Rule(Hanzi(z), Tailo(t), pos_tag, trans_tag)) ->
         Some (Token(Hanzi(z), Tailo(t), pos_tag, trans_tag), drop len uchars)
       #elif defined hakka
@@ -106,7 +115,9 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
     | res -> res
   in
   let text_str = string_of_uchars text_uchars in
-  #if defined taigi
+  #if defined mandarin
+  (token text_str text_str Text "text content", remaining)
+  #elif defined taigi
   (token text_str text_str Text "text content", remaining)
   #elif defined hakka
   (token text_str Text all_dialect "text content", remaining)
