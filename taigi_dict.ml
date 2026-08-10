@@ -188,64 +188,7 @@ let verbs = [
   rule "毋知影" "m̄ tsai-iánn" Verb "do not know";
 ]
 
-let numerals = [
-  rule "零" "lân" Numeral "zero";
-  rule "半" "puànn" Numeral "half";
-  rule "一" "it" Numeral "one";
-  rule "二" "jī" Numeral "two";
-  rule "三" "sann" Numeral "three";
-  rule "四" "sì" Numeral "four";
-  rule "五" "gōo" Numeral "five";
-  rule "六" "la̍k" Numeral "six";
-  rule "七" "tshit" Numeral "seven";
-  rule "八" "peh" Numeral "eight";
-  rule "九" "káu" Numeral "nine";
-  rule "十" "tsa̍p" Numeral "ten";
-  rule "百" "pah" Numeral "hundred";
-  rule "千" "tshing" Numeral "thousand";
-  rule "萬" "bān" Numeral "ten thousand";
-  rule "億" "ik" Numeral "hundred million";
-  rule "第一" "tē-it" Numeral "first";
-  rule "第二" "tē-jī" Numeral "second";
-  rule "第三" "tē-sann" Numeral "third";
-  rule "第四" "tē-sì" Numeral "fourth";
-  rule "第五" "tē-gōo" Numeral "fifth";
-  rule "第六" "tē-la̍k" Numeral "sixth";
-  rule "第七" "tē-tshit" Numeral "seventh";
-  rule "第八" "tē-peh" Numeral "eighth";
-  rule "第九" "tē-káu" Numeral "ninth";
-  rule "第十" "tē-tsa̍p" Numeral "tenth";
-  rule "第十一" "tē-tsa̍p-it" Numeral "eleventh";
-  rule "第十二" "tē-tsa̍p-jī" Numeral "twelfth";
-  rule "第十三" "tē-tsa̍p-sann" Numeral "thirteenth";
-  rule "第十四" "tē-tsa̍p-sì" Numeral "fourteenth";
-  rule "第十五" "tē-tsa̍p-gōo" Numeral "fifteenth";
-  rule "第十六" "tē-tsa̍p-la̍k" Numeral "sixteenth";
-  rule "第十七" "tē-tsa̍p-tshit" Numeral "seventeenth";
-  rule "第十八" "tē-tsa̍p-peh" Numeral "eighteenth";
-  rule "第十九" "tē-tsa̍p-káu" Numeral "nineteenth";
-  rule "第二十" "tē-jī-tsa̍p" Numeral "twentieth";
-  rule "一倍" "it-pōe" Numeral "single";
-  rule "二倍" "jī-pōe" Numeral "double";
-  rule "三倍" "sann-pōe" Numeral "triple";
-  rule "四倍" "sì-pōe" Numeral "fourfold";
-  rule "五倍" "gōo-pōe" Numeral "fivefold";
-  rule "六倍" "la̍k-pōe" Numeral "sixfold";
-  rule "七倍" "tshit-pōe" Numeral "sevenfold";
-  rule "八倍" "peh-pōe" Numeral "eightfold";
-  rule "九倍" "káu-pōe" Numeral "ninefold";
-  rule "十倍" "tsa̍p-pōe" Numeral "tenfold";
-  rule "十一倍" "tsa̍p-it-pōe" Numeral "elevenfold";
-  rule "十二倍" "tsa̍p-jī-pōe" Numeral "twelvefold";
-  rule "十三倍" "tsa̍p-sann-pōe" Numeral "thirteenfold";
-  rule "十四倍" "tsa̍p-sì-pōe" Numeral "fourteenfold";
-  rule "十五倍" "tsa̍p-gōo-pōe" Numeral "fifteenfold";
-  rule "十六倍" "tsa̍p-la̍k-pōe" Numeral "sixteenfold";
-  rule "十七倍" "tsa̍p-tshit-pōe" Numeral "seventeenfold";
-  rule "十八倍" "tsa̍p-peh-pōe" Numeral "eighteenfold";
-  rule "十九倍" "tsa̍p-káu-pōe" Numeral "nineteenfold";
-  rule "二十倍" "jī-tsa̍p-pōe" Numeral "twentyfold";
-]
+let numerals = []
 
 let nouns = [
   rule "阿公" "a-kong" Noun "grandfather; father's father";

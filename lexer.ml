@@ -44,6 +44,11 @@ let is_numeric uchar =
   let code = Uchar.to_int uchar in
   code >= 0x0030 && code <= 0x0039
 
+let is_zh_numeric uchar =
+  let numerics = ["零"; "一"; "二"; "兩"; "三"; "四"; "五"; "六"; "七"; "八"; "九"; "十"; "百"; "千"; "萬"; "億"] in
+  let t = string_of_uchar uchar in
+  List.exists (fun x -> t = x) numerics
+
 let match_foreign_proper_noun (uchars : Uchar.t list) =
   let rec match_english (ucs : Uchar.t list) (acc : Uchar.t list) =
     match ucs with
@@ -95,6 +100,28 @@ let match_numeral_noun (uchars : Uchar.t list) =
       Some (Token(Pattern(z), Numeral, all_dialect, Trans(z)), remaining)
       #endif
 
+let match_zh_numeral_noun (uchars : Uchar.t list) =
+  let rec match_zh_numeral (ucs : Uchar.t list) (acc : Uchar.t list) =
+    match ucs with
+    | [] -> [], List.rev acc
+    | x :: xs when is_zh_numeric x -> match_zh_numeral xs (x :: acc)
+    | x :: xs when ((string_of_uchar x) = "點") -> match_zh_numeral xs (x :: acc)
+    | _ -> ucs, List.rev acc
+  in
+  let (remaining, matched_uchars) = match_zh_numeral uchars [] in
+  match matched_uchars with
+  | [] -> None
+  | _ ->
+    let z = string_of_uchars matched_uchars in
+      (* TODO: Implement pinyin and trans. *)
+      #if defined mandarin
+      Some (Token(Hanzi(z), Pinyin(z), Numeral, Trans(z)), remaining)
+      #elif defined taigi
+      Some (Token(Hanzi(z), Tailo(z), Numeral, Trans(z)), remaining)
+      #elif defined hakka
+      Some (Token(Pattern(z), Numeral, all_dialect, Trans(z)), remaining)
+      #endif
+
 let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
   let total_len = List.length uchars in
   let rec try_lengths len =
@@ -132,6 +159,8 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
           List.rev acc, rest
         else if is_numeric u then
           List.rev acc, rest
+        else if is_zh_numeric u then
+          List.rev acc, rest
         else
           match match_rule_prefix rules rest with
           | Some _ -> List.rev acc, rest
@@ -162,6 +191,8 @@ let lex (rules : rule list) (str : string) : token list =
             match_foreign_proper_noun uchars
           else if is_numeric x then
             match_numeral_noun uchars
+          else if is_zh_numeric x then
+            match_zh_numeral_noun uchars
           else
             match_rule_prefix rules uchars
         in
