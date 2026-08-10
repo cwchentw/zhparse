@@ -116,5 +116,5 @@ let string_of_pos = function
   | Text -> "Text"
   | End -> "End"
 
-let print_token (Token(Hanzi(z), Pinyin(py), pos, Trans(ts))) =
+let string_of_token (Token(Hanzi(z), Pinyin(py), pos, Trans(ts))) =
   Printf.sprintf "(%s, %s, %s, %s)" z py (string_of_pos pos) ts

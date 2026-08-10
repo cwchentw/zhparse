@@ -188,5 +188,5 @@ let print_dialect d =
     check SouthSixian;
     buf |> Buffer.contents |> String.trim
 
-let print_token (Token (Pattern p, pos, dialect, Trans t)) =
+let string_of_token (Token (Pattern p, pos, dialect, Trans t)) =
   Printf.sprintf "(%s, %s, %s, %s)" p (string_of_pos pos) (print_dialect dialect) t

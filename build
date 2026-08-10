@@ -40,20 +40,11 @@ if ! $(CHECK_DIALECT "$dialect"); then
 fi
 
 CWD=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd) || exit 1
-if [ "$dialect" = "$MANDARIN" ]; then
-    cp "$CWD/mandarin_flag.ml" "$CWD/flag.ml" || exit 1
-    cp "$CWD/mandarin_dict.ml" "$CWD/dict.ml" || exit 1
-    LEXER="mandarinlr"
-elif [ "$dialect" = "$TAIGI" ]; then
-    cp "$CWD/taigi_flag.ml" "$CWD/flag.ml" || exit 1
-    cp "$CWD/taigi_dict.ml" "$CWD/dict.ml" || exit 1
-    LEXER="taigilr"
-elif [ "$dialect" = "$HAKKA" ]; then
-    cp "$CWD/hakka_flag.ml" "$CWD/flag.ml" || exit 1
-    cp "$CWD/hakka_dict.ml" "$CWD/dict.ml" || exit 1
-    LEXER="hakkalr"
-fi
+cp "$CWD/${dialect}_flag.ml" "$CWD/flag.ml" || exit 1
+cp "$CWD/${dialect}_dict.mli" "$CWD/Dict.mli" || exit 1
+cp "$CWD/${dialect}_dict.ml" "$CWD/Dict.ml" || exit 1
+LEXER="${dialect}lr"
 
-trap 'rm -f "$CWD/dict.ml" "$CWD/flag.ml"' EXIT INT TERM
+trap 'rm -f "$CWD/Dict.mli" "$CWD/Dict.ml" "$CWD/flag.ml"' EXIT INT TERM
 
-$(cd "$CWD" && ocaml-std -o "$LEXER" cli.ml)
+$(cd "$CWD" && ocaml-std -o "$LEXER" Dict.mli Dict.ml cli.ml)

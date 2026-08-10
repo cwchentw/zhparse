@@ -1,8 +1,9 @@
+open Dict
 let version = "0.1.0"
 
 #include "flag.ml"
-#include "dict.ml"
 #include "lexer.ml"
+#include "embedded_parser.ml"
 
 type command =
   | Version
@@ -39,7 +40,8 @@ let _ =
   | Ok (Sentence sentence) ->
     Printf.printf "# %s\n" sentence;
     lex rules sentence
-    |> List.iter (fun x -> print_endline (print_token x));
+    |> parse
+    |> List.iter (fun x -> print_endline (string_of_token x));
     #if defined mandarin
     Printf.printf "(%s, %s, %s, %s)\n" "EOS" "EOS" (string_of_pos End) "end of sentence"
     #elif defined taigi
