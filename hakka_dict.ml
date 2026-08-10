@@ -46,7 +46,14 @@ type pos =
   | Exclamation
   | Pronoun
   | Demonstrative
+  | Prefix
+  | Suffix
+  | Phrase
   | Adverb
+  | ApproximationAdverb
+  | Adjective
+  | Numeral
+  | Verb
   | Noun
   | Foreign
   | Text
@@ -78,19 +85,33 @@ let punctuations = [
   rule "）" Punctuation all_dialect "closing parenthesis";
 ]
 
-let particles = []
+let particles : rule list = []
 
-let conjugations = []
+let conjugations : rule list = []
 
-let prepositions = []
+let prepositions : rule list = []
 
-let exclamations = []
+let exclamations : rule list = []
 
-let pronouns = []
+let pronouns : rule list = []
 
-let demonstratives = []
+let demonstratives : rule list = []
 
-let adverbs = []
+let prefixes : rule list = []
+
+let suffixes : rule list = []
+
+let phrases : rule list = []
+
+let adverbs : rule list = []
+
+let approximation_adverbs : rule list = []
+
+let adjectives : rule list = []
+
+let verbs : rule list = []
+
+let numerals : rule list = []
 
 let nouns = [
   rule "姨丈公" Noun all_dialect "husband of maternal grandmother's sister";
@@ -133,7 +154,14 @@ let string_of_pos = function
   | Exclamation -> "Exclamation"
   | Pronoun -> "Pronoun"
   | Demonstrative -> "Demonstrative"
+  | Prefix -> "Prefix"
+  | Suffix -> "Suffix"
+  | Phrase -> "Phrase"
   | Adverb -> "Adverb"
+  | ApproximationAdverb -> "Approximation Adverb"
+  | Adjective -> "Adjective"
+  | Verb -> "Verb"
+  | Numeral -> "Numeral"
   | Noun -> "Noun"
   | Foreign -> "Foreign"
   | Text -> "Text"
