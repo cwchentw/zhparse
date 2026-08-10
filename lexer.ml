@@ -40,6 +40,10 @@ let is_uppcase (uchar : Uchar.t) =
   let code = Uchar.to_int uchar in
   code >= 65 && code <= 90
 
+let is_numeric uchar =
+  let code = Uchar.to_int uchar in
+  code >= 0x0030 && code <= 0x0039
+
 let match_foreign_proper_noun (uchars : Uchar.t list) =
   let rec match_english (ucs : Uchar.t list) (acc : Uchar.t list) =
     match ucs with
@@ -68,6 +72,28 @@ let match_foreign_proper_noun (uchars : Uchar.t list) =
         #elif defined hakka
         Some (Token(Pattern(z), Foreign, all_dialect, Trans(z)), remaining)
         #endif
+
+let match_numeral_noun (uchars : Uchar.t list) =
+  let rec match_numeral (ucs : Uchar.t list) (acc : Uchar.t list) =
+    match ucs with
+    | [] -> [], List.rev acc
+    | x :: xs when is_numeric x -> match_numeral xs (x :: acc)
+    | x :: xs when ((string_of_uchar x) = "." || (string_of_uchar x) = "-") ->
+      match_numeral xs (x :: acc)
+    | _ -> ucs, List.rev acc
+  in
+  let (remaining, matched_uchars) = match_numeral uchars [] in
+  match matched_uchars with
+  | [] -> None
+  | _  ->
+    let z = string_of_uchars matched_uchars in
+      #if defined mandarin
+      Some (Token(Hanzi(z), Pinyin(z), Numeral, Trans(z)), remaining)
+      #elif defined taigi
+      Some (Token(Hanzi(z), Tailo(z), Numeral, Trans(z)), remaining)
+      #elif defined hakka
+      Some (Token(Pattern(z), Numeral, all_dialect, Trans(z)), remaining)
+      #endif
 
 let match_rule_prefix (rules : rule list) (uchars : Uchar.t list) =
   let total_len = List.length uchars in
@@ -104,6 +130,8 @@ let consume_text_chunk (rules : rule list) (uchars : Uchar.t list) =
     | u :: tl ->
         if is_english u then
           List.rev acc, rest
+        else if is_numeric u then
+          List.rev acc, rest
         else
           match match_rule_prefix rules rest with
           | Some _ -> List.rev acc, rest
@@ -132,6 +160,8 @@ let lex (rules : rule list) (str : string) : token list =
         let matched_res =
           if is_english x then
             match_foreign_proper_noun uchars
+          else if is_numeric x then
+            match_numeral_noun uchars
           else
             match_rule_prefix rules uchars
         in
