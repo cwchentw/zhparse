@@ -132,6 +132,7 @@ let phrases = [
   rule "毋甘嫌" "m̄-kam hiâm" Phrase "you flatter me";
   rule "毋是勢" "m̄-sī-sè" Phrase "something is wrong";
   rule "毋知死" "m̄-tsai-sí" Phrase "clueless about the danger";
+  rule "毋情願" "m̄-tsîng-guān" Phrase "unwilling / reluctant / grudging";
 ]
 
 let adverbs = [
@@ -151,6 +152,7 @@ let adverbs = [
   rule "毋好勢" "m̄ hó-sè" Adverb "inconvenient / inopportune";
   rule "毋敢" "m̄ kánn" Adverb "dare not / not dare";
   rule "毋通" "m̄-thang" Adverb "do not / should not";
+  rule "毋拄好" "m̄-tú-hó" Adverb "as it happens / by a coincidence";
 ]
 
 let approximation_adverbs = [
@@ -169,6 +171,7 @@ let adjectives = [
   rule "毋是款" "m̄-sī-khuán" Adjective "not the proper way";
   rule "毋著" "m̄-tio̍h" Adjective "wrong / incorrect / mistaken";
   rule "毋知人" "m̄-tsai-lâng" Adjective "unconscious / comatose / blacked out";
+  rule "毋成" "m̄-tsiânn" Adjective "good-for-nothing / worthless thing";
 ]
 
 let verbs = [
@@ -186,6 +189,7 @@ let verbs = [
   rule "毋值" "m̄-ta̍t" Verb "not worth it";
   rule "毋知" "m̄ tsai" Verb "do not know";
   rule "毋知影" "m̄ tsai-iánn" Verb "do not know";
+  rule "毋准" "m̄-tsún" Verb "not allowed / forbidden / prohibited / disallow";
 ]
 
 let numerals = []
