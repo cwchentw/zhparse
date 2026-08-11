@@ -29,6 +29,8 @@ type token = Token of hanzi * tailo * pos * trans
 let rule hanzi tailo pos trans = Rule(Hanzi(hanzi), Tailo(tailo), pos, Trans(trans))
 let token hanzi tailo pos trans = Token(Hanzi(hanzi), Tailo(tailo), pos, Trans(trans))
 
+(* Ambiguous words: 無 *)
+
 let punctuations = [
   rule "。" "。" Punctuation "sentence terminator";
   rule "？" "？" Punctuation "question terminator";
