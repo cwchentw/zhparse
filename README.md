@@ -9,11 +9,10 @@ While a purely rule‑based parser cannot achieve production‑grade accuracy du
 
 ## 📌 Project Status
 
-The current stage of development is focused on the **Taigi (Taiwanese Hokkien) lexer/tokenizer** projects. The main objective is to design a **rule‑based lexer** that can consistently handle unambiguous words. In this initial phase, particular attention is placed on **grammatical markers** and **high‑frequency vocabulary**, ensuring that the foundation of the system is both stable and practical for real usage.
+**NLP is fundamentally an engineering discipline, not just programming.**    
+Models are driven by corpora rather than code. Programming in this context primarily serves as data preprocessing and rule construction.
 
-Work on the **Hakka lexer/tokenizer** continues, but regional distinctions are not implemented at this stage due to insufficient data. Lexical entries will be restructured once more comprehensive sources become available.
-
-**Mandarin lexer/tokenizer** has been added as a scaffold for a Sinitic language NLP codebase. Further development is not planned in the near future.
+This project is presented as a **prototype of a rule‑based Chinese analyzer**, intended to demonstrate methodology and design principles. It is not aimed at productization, but rather serves as a research and teaching example that highlights corpus‑driven approaches to language processing.
 
 ## ⚙️ System Requirements
 
